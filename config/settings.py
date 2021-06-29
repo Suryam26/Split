@@ -1,8 +1,15 @@
-import os
 from pathlib import Path
+from environs import Env
 
+
+# Environment Variables
+env = Env()
+env.read_env()
+
+
+# Basic settings
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure--r-l=)#l&(8l*r$u+ib+m9ujz1hy#lxh^^828wnhks$yg7tvju'
+SECRET_KEY = env("DJANGO_SECRET_KEY")
 DEBUG = True
 ALLOWED_HOSTS = []
 
@@ -17,9 +24,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
-    # REST
+    # 3rd party
     'rest_framework',
     'rest_framework.authtoken',
+
+    'corsheaders',
 
     'allauth',
     'allauth.account',
@@ -35,6 +44,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -123,3 +133,10 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION = "none"
+
+
+# React Front-End
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+    'http://localhost:8000',
+)
