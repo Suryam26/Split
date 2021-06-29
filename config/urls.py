@@ -8,6 +8,10 @@ urlpatterns = [
     # Browsable API Auth
     path('auth/', include('rest_framework.urls')),
 
+    # User
+    path('account/', include('dj_rest_auth.urls')),
+    path('account/signup/', include('dj_rest_auth.registration.urls')),
+
     # App
-    # path('', include('api.urls')),
+    path('', include('api.urls')),
 ]
