@@ -140,3 +140,18 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
     'http://localhost:8000',
 )
+
+
+# Token Auth
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
+
+
+# User Registration
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'api.serializers.CustomRegisterSerializer',
+}
