@@ -12,14 +12,14 @@ class CustomUser(AbstractUser):
 
 
 class Bill(models.Model):
-    name = models.CharField(max_length=256)
+    title = models.CharField(max_length=256)
     date = models.DateField(default=timezone.now)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return self.title
 
 
 class Item(models.Model):

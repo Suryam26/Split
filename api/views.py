@@ -14,9 +14,6 @@ class BillViewSet(viewsets.ModelViewSet):
     serializer_class = BillSerializer
     permission_classes = [permissions.IsAuthenticated, IsAuthorOrReadOnly]
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
     def get_queryset(self):
         return Bill.objects.filter(user=self.request.user)
 
